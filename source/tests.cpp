@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "vec2.hpp"
+#include "mat2.hpp"
 
 Vec2 value_con {2.4f, 0.0f};
 
@@ -69,7 +70,6 @@ TEST_CASE (" describe_default_constructor ", "[default_constructor]")
 
 TEST_CASE (" describe_plus_equals ", "[default_plus_equals]")
 {
-
   plus_1 += plus_2;
   plus_3 += plus_4;
   REQUIRE (plus_1.x_ == 5.0f);
@@ -147,6 +147,64 @@ TEST_CASE (" describe_other_mult ", "[default_other_mult]")
   Vec2 o = omult_1 * z;
   REQUIRE (o.x_ == 14.0f);
   REQUIRE (o.y_ == 26.8f);
+}
+
+Mat2 default_mat {};
+
+Mat2 value_mat {3.0f, 2.0f, 5.0f, 3.0f};
+
+Mat2 mat_one {6.0f, 5.0f, 6.0f, 7.0f};
+
+Mat2 mat_two {5.0f, 2.0f, 2.0f, 3.0f};
+
+Mat2 mat_three {3.0f, 4.5f, 7.6f, 3.6f};
+
+Mat2 mat_four {3.3f, 6.5f, 7.0f, 8.0f};
+
+Mat2 mat_det {4.0f,3.0f,5.0f,2.0f};
+
+Mat2 mat2_det {4.0f,-2.0f,8.0f,3.0f};
+
+TEST_CASE (" describe_default_matrix ", "[default_matrix]")
+{
+  REQUIRE (default_mat.x_ == 1.0f);
+  REQUIRE (default_mat.y_ == 0.0f);
+  REQUIRE (default_mat.g_ == 0.0f);
+  REQUIRE (default_mat.h_ == 1.0f);
+}
+
+TEST_CASE (" describe_value_matrix ", "[value_matrix]")
+{
+  REQUIRE (value_mat.x_ == 3.0f);
+  REQUIRE (value_mat.y_ == 2.0f);
+  REQUIRE (value_mat.g_ == 5.0f);
+  REQUIRE (value_mat.h_ == 3.0f);
+}
+
+TEST_CASE (" describe_determinante ", "[value_determinante]")
+{
+  REQUIRE (mat_det.det() == -7.0f);
+  REQUIRE (mat2_det.det() == 28.0f);
+  /*REQUIRE (value_mat.g_ == 5.0f);
+  REQUIRE (value_mat.h_ == 3.0f);*/
+}
+
+TEST_CASE (" describe_mult_equals_mat ", "[value_mult_equals_mat]")
+{
+  mat_one *= mat_two;
+  REQUIRE (mat_one.x_ == 40.0f);
+  REQUIRE (mat_one.y_ == 27.0f);
+  REQUIRE (mat_one.g_ == 44.0f);
+  REQUIRE (mat_one.h_ == 33.0f);
+}
+
+TEST_CASE (" describe_nmult_mat ", "[value_nmult_mat]")
+{
+  Mat2 sum = mat_three * mat_four;
+  REQUIRE (sum.x_ == 41.4f);
+  REQUIRE (sum.y_ == 55.5f);
+  REQUIRE (sum.g_ == 50.28f);
+  REQUIRE (sum.h_ == 78.2f);
 }
 
 int main(int argc, char *argv[])
