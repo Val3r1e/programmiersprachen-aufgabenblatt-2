@@ -2,11 +2,13 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 //Tests für Vektoren
 
-float s = 3;
-float z = 4;
+float s {3};
+float z {4};
 
 TEST_CASE (" describe_value_constructor ", "[value_constructor]")
 {
@@ -222,6 +224,39 @@ TEST_CASE (" describe_rotation ", "[value_rotation]")
   REQUIRE (rot.y_ == Approx(0.98803f));
   REQUIRE (rot.g_ == Approx(-0.98803f));
   REQUIRE (rot.h_ == Approx(0.15425f));
+}
+
+//Tests für Kreis
+
+TEST_CASE (" describe_circle ", "[value_circle]")
+{
+  Circle cvalue {Vec2 {2.3f,4.5f},3.0f,Color {1.0f,0.0f,0.0f}}; 
+  Vec2 n = cvalue.getMiddle();
+  float q = cvalue.getRadius();
+  Color o = cvalue.getColor();
+  REQUIRE (n.x_ == 2.3f);
+  REQUIRE (n.y_ == 4.5f);
+  REQUIRE (q == 3.0f);
+  REQUIRE (o.r_ == 1.0f);
+  REQUIRE (o.g_ == 0.0f);
+  REQUIRE (o.b_ == 0.0f);
+}
+
+//Tests für Rechteck
+
+TEST_CASE (" describe_rectangle ", "[value_rectangle]")
+{
+  Rectangle e {Vec2{2.3f,4.5f},Vec2{3.0f,5.5f},0.0f};
+  Vec2 in = e.getMin();
+  Vec2 ax = e.getMax();
+  Color l = e.getColor();
+  REQUIRE (in.x_ == 2.3f);
+  REQUIRE (in.y_ == 4.5f);
+  REQUIRE (ax.x_ == 3.0f);
+  REQUIRE (ax.y_ == 5.5f);
+  REQUIRE (l.r_ == 0.0f);
+  REQUIRE (l.g_ == 0.0f);
+  REQUIRE (l.b_ == 0.0f);
 }
 
 int main(int argc, char *argv[])
