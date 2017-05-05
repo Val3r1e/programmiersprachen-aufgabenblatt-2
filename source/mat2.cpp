@@ -1,5 +1,6 @@
 #include "mat2.hpp"
 #include "vec2.hpp"
+#include <cmath>
 
 Mat2::Mat2 (): 
     x_(1.0f), y_(0.0f), 
@@ -28,24 +29,50 @@ Mat2 & Mat2::operator *=( Mat2 const & m){
     return *this;
 }
 
+Mat2 const operator *( Mat2 const & m1 , Mat2 const & m2 ){
+    return Mat2(m1) *= m2;
+}
+
+Vec2 const operator *( Mat2 const & m, Vec2 const & v){
+    float tx = m.x_ * v.x_ + m.y_ * v.y_;
+    float ty = m.g_ * v.x_ + m.h_ * v.y_;
+    return Vec2(tx,ty);
+}
+
+Vec2 const operator *( Vec2 const & v, Mat2 const & m){
+    float tx = m.x_ * v.x_ + m.y_ * v.y_;
+    float ty = m.g_ * v.x_ + m.h_ * v.y_;
+    return Vec2(tx,ty);
+}
+
 float Mat2:: det () const{
     float d = x_ * h_ - (g_ * y_);
     return d;
 }
 
-/*Mat2 & Mat2::operator *=(Vec2 const& w){
-    this -> x_ = x_ * w.x_;
-    this -> y_ = y_ * w.y_;
-    this -> g_ = g_ * w.x_;
-    this -> h_ = h_ * w.y_;
-    return *this;
-}*/
-
-Mat2 const operator *( Mat2 const & m1 , Mat2 const & m2 ){
-    return Mat2(m1) *= m2;
+Mat2 const inverse ( Mat2 const & m){
+    float con = (1/(m.x_*m.h_-(m.y_*m.g_)));
+    float tx = m.h_ * con;
+    float ty = -(m.y_) * con;
+    float tg = -(m.g_) * con;
+    float th = m.x_ * con;
+    return Mat2(tx,ty,tg,th);
 }
 
-/*Vec2 const operator *( Mat2 const & m, Vec2 const & v){
-    return Mat2(m) *= v;
-}*/
+Mat2 const transpose ( Mat2 const & m){
+    float tx = m.x_;
+    float ty = m.g_;
+    float tg = m.y_;
+    float th = m.h_;
+    return Mat2(tx,ty,tg,th);
+}
+
+Mat2 const make_rotation_mat2 ( float phi ){
+    float tx = cos(phi);
+    float ty = -sin(phi);
+    float tg = sin(phi);
+    float th = cos(phi);
+    return Mat2(tx,ty,tg,th);
+}
+
 
