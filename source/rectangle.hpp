@@ -27,7 +27,7 @@ class Rectangle
 
         void draw (Window const& w, Color const& c);
 
-                               
+        bool is_inside (Vec2 const& v);
 
 };
 #endif

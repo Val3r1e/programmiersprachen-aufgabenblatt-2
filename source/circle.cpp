@@ -36,3 +36,23 @@ void Circle::draw (Window const& w, Color c){
         w.draw_point(r_*cos(i)+ middle.x_, r_*sin(i)+ middle.y_,c.r_,c.g_,c.b_);
     }
 }
+
+bool Circle::is_inside (Vec2 const& v){
+    Vec2 middle (m_.x_,m_.y_);
+    for (int i = 1; i <= 360; i++){
+        Vec2 t (r_*cos(i)+ middle.x_, r_*sin(i)+ middle.y_);
+        if (v.x_ >= middle.x_ && v.x_ < t.x_ && v.y_ >= middle.y_ && v.y_ < t.y_){ //Oben rechts
+            return true;
+        }
+        if (v.x_ <= middle.x_ && v.x_ > t.x_ && v.y_ >= middle.y_ && v.y_ < t.y_){ //Oben links
+            return true;
+        }
+        if (v.x_ >= middle.x_ && v.x_ < t.x_ && v.y_ <= middle.y_ && v.y_ > t.y_){ //Unten rechts
+            return true;
+        }
+        if (v.x_ <= middle.x_ && v.x_ > t.x_ && v.y_ <= middle.y_ && v.y_ > t.y_){ //Unten links
+            return true;
+        }
+    }
+    return false;
+}

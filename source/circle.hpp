@@ -27,6 +27,8 @@ class Circle
 
         void draw (Window const& w, Color c);
 
+        bool is_inside (Vec2 const& v);
+
 };
 
 #endif

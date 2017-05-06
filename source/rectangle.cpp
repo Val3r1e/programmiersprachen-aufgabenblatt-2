@@ -40,4 +40,14 @@ void Rectangle::draw (Window const& w, Color const& c){
     w.draw_line(max_.x_, max_.y_, min_.x_, max_.y_,c.r_,c.g_,c.b_); //max nach links
 }
 
+bool Rectangle::is_inside (Vec2 const& v){
+    if (min_.x_ < v.x_ && v.x_ < max_.x_){
+        if (min_.y_ < v.y_ && v.y_ < max_.y_){
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+
 
