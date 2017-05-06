@@ -2,10 +2,13 @@
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
-
+#include "vec2.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 int main(int argc, char* argv[])
 {
+
   Window win{std::make_pair(800,800)};
 
   while (!win.should_close()) {
@@ -25,6 +28,14 @@ int main(int argc, char* argv[])
 
     float x3{400 + 380 * std::sin(t-10.f)};
     float y3{400 + 380 * std::cos(t-10.f)};
+
+    Rectangle r1 {Vec2{200.0f,450.0f},Vec2{350.0f,600.0f},Color{0.0}};
+
+    Rectangle r2 {Vec2{100.0f,250.0f},Vec2{400.0f,400.0f},Color{0.0}};
+  
+    Circle c1 {Vec2{600.0f,350.0f}, 100.0f,Color{0.0}};
+
+    Circle c2 {Vec2{700.0f,500.0f}, 50.0f, Color{0.0}};
 
     win.draw_point(x1, y1,
         1.0f, 0.0f, 0.0f);
@@ -46,6 +57,14 @@ int main(int argc, char* argv[])
 
     std::string text = "mouse position: (" + std::to_string(m.first) + ", " + std::to_string(m.second) + ")";
     win.draw_text(10, 5, 35.0f, text);
+
+    r1.draw(win, Color{1.0,1.0,1.0});
+
+    r2.draw(win);
+
+    c1.draw(win);
+
+    c2.draw(win,Color{1.0,1.0,1.0});
 
     win.update();
   }

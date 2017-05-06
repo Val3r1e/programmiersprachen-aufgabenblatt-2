@@ -11,10 +11,8 @@ Mat2::Mat2 (float x, float y, float g, float h):
     g_(g), h_(h) {}
 
 Mat2::Mat2 (Mat2 const & m):
-    x_ (m.x_),
-    y_ (m.y_),
-    g_ (m.g_),
-    h_ (m.h_) {}
+    x_ (m.x_), y_ (m.y_),
+    g_ (m.g_), h_ (m.h_) {}
 
 
 Mat2 & Mat2::operator *=( Mat2 const & m){

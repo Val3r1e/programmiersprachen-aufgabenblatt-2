@@ -21,6 +21,7 @@
 #include <cassert>
 #include <exception>
 
+
 namespace {
 void errorcb(int error, const char* desc)
 {
