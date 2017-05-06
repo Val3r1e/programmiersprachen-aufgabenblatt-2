@@ -259,6 +259,34 @@ TEST_CASE (" describe_rectangle ", "[value_rectangle]")
   REQUIRE (l.b_ == 0.0f);
 }
 
+//Test für Rechteck is_inside
+
+TEST_CASE (" describe_rectangle_inside ", "[value_rectangle_inside]")
+{
+  Rectangle i {Vec2{30.0f,40.5f},Vec2{60.0f,70.5f},0.0f};
+  Vec2 in {35.0f,50.0f};
+  Vec2 out {15.0f,25.0f};
+  Vec2 out2 {39.0f,80.0f};
+  REQUIRE (i.is_inside(in) == true);
+  REQUIRE (i.is_inside(out) == false);
+  REQUIRE (i.is_inside(out2) == false);
+}
+
+//Test für Kreis is_inside
+
+TEST_CASE (" describe_circle_inside ", "[value_circle_inside]")
+{
+  Circle s {Vec2 {30.0f,40.5f},10.0f,Color {0.0f}};
+  Vec2 in {35.0f,43.0f};
+  Vec2 in2 {30.0f,40.5f};
+  Vec2 out {20.0f,60.0f};
+  Vec2 out2 {39.0f,31.5f}; 
+  REQUIRE (s.is_inside(in) == true);
+  REQUIRE (s.is_inside(in2) == true);
+  REQUIRE (s.is_inside(out) == false);
+  REQUIRE (s.is_inside(out2) == false);
+}
+
 int main(int argc, char *argv[])
 {
 
