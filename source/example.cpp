@@ -5,6 +5,7 @@
 #include "vec2.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
+#include <vector>
 
 int main(int argc, char* argv[])
 {
@@ -18,7 +19,7 @@ int main(int argc, char* argv[])
 
     bool left_pressed = win.get_mouse_button(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
 
-    auto t = win.get_time();
+    /*auto t = win.get_time();
 
     float x1{400 + 380 * std::sin(t)};
     float y1{400 + 380 * std::cos(t)};
@@ -27,7 +28,9 @@ int main(int argc, char* argv[])
     float y2{400 + 380 * std::cos(2.0f*t)};
 
     float x3{400 + 380 * std::sin(t-10.f)};
-    float y3{400 + 380 * std::cos(t-10.f)};
+    float y3{400 + 380 * std::cos(t-10.f)};*/
+
+    //Objekte erstellen
 
     Rectangle r1 {Vec2{200.0f,450.0f},Vec2{350.0f,600.0f},Color{0.0}};
 
@@ -37,10 +40,58 @@ int main(int argc, char* argv[])
 
     Circle c2 {Vec2{700.0f,500.0f}, 50.0f, Color{0.0}};
 
-    win.draw_point(x1, y1,
+    //Objekte zeichnen
+
+    r1.draw(win, Color{1.0,1.0,1.0});
+
+    r2.draw(win);
+
+    c1.draw(win);
+
+    c2.draw(win,Color{1.0,1.0,1.0});
+
+    //Vektor erstellen
+
+    std::vector<Circle> vc;
+
+    std::vector<Rectangle> vr;
+
+    //Objekte in Vektor
+
+    vc.push_back(c1);
+    vc.push_back(c2);
+
+    vr.push_back(r1);
+    vr.push_back(r2);
+
+    //Blau Funktion
+
+    Vec2 n {(float)win.mouse_position().first,(float)win.mouse_position().second};
+
+    Color clr {0.0f,0.0f,1.0f};
+
+    for(int i = 0; i < vr.size(); i++){       //Rechteck blau
+      if(vr[i].is_inside(n) == true){
+        vr[i].draw(win,clr);
+      }
+    }
+
+    for(int i = 0; i < vc.size(); i++){        //Kreis blau
+      if(vc[i].is_inside(n) == true){
+        vc[i].draw(win,clr);
+      }
+    }
+
+
+    /*if(r2.is_inside(n) == true){
+      r2.draw(win,clr);
+    }*/
+    
+
+    /*win.draw_point(x1, y1,
         1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
-    win.draw_point(x3, y3, 0.0f, 0.0f, 1.0f);
+    win.draw_point(x3, y3, 0.0f, 0.0f, 1.0f);*/
 
     auto m = win.mouse_position();
     if (left_pressed) {
@@ -58,13 +109,7 @@ int main(int argc, char* argv[])
     std::string text = "mouse position: (" + std::to_string(m.first) + ", " + std::to_string(m.second) + ")";
     win.draw_text(10, 5, 35.0f, text);
 
-    r1.draw(win, Color{1.0,1.0,1.0});
-
-    r2.draw(win);
-
-    c1.draw(win);
-
-    c2.draw(win,Color{1.0,1.0,1.0});
+  
 
     win.update();
   }
