@@ -14,7 +14,6 @@ int main(int argc, char* argv[]){
         }
 
         Circle c1 {Vec2{400.0f,400.0f}, 300.0f,Color{0.0}};
-
         c1.draw(win);
 
         auto t = win.get_time();
@@ -22,14 +21,16 @@ int main(int argc, char* argv[]){
 
         Vec2 middle (c1.getMiddle().x_,c1.getMiddle().y_);
 
-        win.draw_line(400.0f,400.0f,-(c1.getRadius()-10)*cos(t*0.001f)+ middle.x_, -(c1.getRadius()-10)*sin(t*0.001f)+ middle.y_,0.0,0.0,0.0);
+        win.draw_line(400.0f,400.0f,-(c1.getRadius()-20)*cos(t*0.0000727f + (M_PI/2))+ middle.x_, -(c1.getRadius()-20)*sin(t*0.0000727f + (M_PI/2))+ middle.y_,0.0,0.0,0.0);  //Stunde
+
+        win.draw_line(400.0f,400.0f,-(c1.getRadius()-20)*cos(t*0.0000727f + (M_PI/2))+ middle.x_, -(c1.getRadius()-20)*sin(t*0.0000727f + (M_PI/2))+ middle.y_,0.0,0.0,0.0);
             
-        win.draw_line(400.0f,400.0f,-(c1.getRadius()-100.0f)*cos(t*0.1f)+ middle.x_, -(c1.getRadius()-90.0f)*sin(t*0.1f)+ middle.y_,0.0,0.0,0.0);
+        win.draw_line(400.0f,400.0f,-(c1.getRadius()-150.0f)*cos(t*0.0017f + (M_PI/2))+ middle.x_, -(c1.getRadius()-150.0f)*sin(t*0.0017f + (M_PI/2))+ middle.y_,0.0,0.0,0.0);  //Minute
 
-        win.draw_line(400.0f,400.0f,-(c1.getRadius()-400.0f)*cos(t*6.0f)+ middle.x_, -(c1.getRadius()-400.0f)*sin(t*6.0f)+ middle.y_,0.0,0.0,0.0);
+        win.draw_line(400.0f,400.0f,-(c1.getRadius()-150.0f)*cos(t*0.0017f + (M_PI/2))+ middle.x_, -(c1.getRadius()-150.0f)*sin(t*0.0017f + (M_PI/2))+ middle.y_,0.0,0.0,0.0);
 
+        win.draw_line(400.0f,400.0f,-(c1.getRadius()-100.0f)*cos(t*0.1f + (M_PI/2))+ middle.x_, -(c1.getRadius()-100.0f)*sin(t*0.1f + (M_PI/2))+ middle.y_,0.0,0.0,0.0);  //Sekunde
 
-        
         win.update();
 
     }
