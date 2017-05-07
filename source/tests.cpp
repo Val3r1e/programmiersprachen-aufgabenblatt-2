@@ -30,14 +30,14 @@ TEST_CASE (" describe_plus_equals ", "[default_plus_equals]")
 {
   Vec2 plus_1 {2.0f, 3.0f};
   Vec2 plus_2 {3.0f, 4.0f};
-  Vec2 plus_3 {5.3f, 4.3f};
+  Vec2 plus_3 {5.3f, -4.3f};
   Vec2 plus_4 {5.3f, 4.3f};
   plus_1 += plus_2;
   plus_3 += plus_4;
   REQUIRE (plus_1.x_ == 5.0f);
   REQUIRE (plus_1.y_ == 7.0f);
   REQUIRE (plus_3.x_ == 10.6f);
-  REQUIRE (plus_3.y_ == 8.6f);
+  REQUIRE (plus_3.y_ == 0.0f);
 }
 
 TEST_CASE (" describe_minus_equals ", "[default_minus_equals]")
@@ -240,6 +240,7 @@ TEST_CASE (" describe_circle ", "[value_circle]")
   REQUIRE (o.r_ == 1.0f);
   REQUIRE (o.g_ == 0.0f);
   REQUIRE (o.b_ == 0.0f);
+  REQUIRE (cvalue.circumference() == Approx(18.84956f));
 }
 
 //Tests für Rechteck
@@ -257,6 +258,7 @@ TEST_CASE (" describe_rectangle ", "[value_rectangle]")
   REQUIRE (l.r_ == 0.0f);
   REQUIRE (l.g_ == 0.0f);
   REQUIRE (l.b_ == 0.0f);
+  REQUIRE (e.circumference() == 3.4f);
 }
 
 //Test für Rechteck is_inside

@@ -2,10 +2,14 @@
 #include "vec2.hpp"
 #include <cmath>
 
+//Konstruktor
+
 Circle::Circle (Vec2 m, float r, Color c): 
     m_(m),
     r_(r),
     c_(c) {}
+
+//Methoden
 
 Vec2 Circle::getMiddle () const {
     return this -> m_;

@@ -3,10 +3,14 @@
 #include "window.hpp"
 #include <cmath>
 
+//Konstruktor
+
 Rectangle::Rectangle (Vec2 min, Vec2 max, Color c):
     min_(min),
     max_(max),
     c_(c) {}
+
+//Methoden
 
 Vec2 Rectangle::getMin () const{
     return this -> min_;
